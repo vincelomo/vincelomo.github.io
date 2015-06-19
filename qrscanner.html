@@ -28,31 +28,35 @@
 	<script type="text/javascript" src="/javascripts/adapter.js"></script>
 	<script type="text/javascript">
 	(function(){
-		var videoSrcId = "";
+		
 		navigator.mediaDevices.enumerateDevices()
 		.then(function(devices) {
-		  devices.forEach(function(device) {
+			console.log(devices);
+		  	devices.forEach(function(device) {
+		  	var videoSrcId = "";
 		    console.log(device.kind + ": " + device.label +
 		                " id = " + device.deviceId);
 		    if(device.kind == "videoinput"){
 		    	videoSrcId = device.deviceId;
 		    	return;
 		    }
+
+		    var p = navigator.mediaDevices.getUserMedia({ audio: false, video: { sourceId: videoSrcId } });
+
+			p.then(function(stream) {
+			   var video = document.querySelector('video');
+			   video.src = window.URL.createObjectURL(stream);
+			   video.onloadedmetadata = function(e) {
+			      // Do something with the video here.
+			      video.play();
+			   };
+			});
+
+			p.catch(function(e) { alert(e.name); }); // always check for errors at the end.
 		  });
 		})
 
-		var p = navigator.mediaDevices.getUserMedia({ audio: false, video: { sourceId: videoSrcId } });
-
-		p.then(function(stream) {
-		   var video = document.querySelector('video');
-		   video.src = window.URL.createObjectURL(stream);
-		   video.onloadedmetadata = function(e) {
-		      // Do something with the video here.
-		      video.play();
-		   };
-		});
-
-		p.catch(function(e) { alert(e.name); }); // always check for errors at the end.
+		
 	})();
 	</script>
 </body>
