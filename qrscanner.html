@@ -14,12 +14,21 @@
 		background: black;
 		color: white;
 	}
+
+	#camera-preview video {
+		width: 100%;
+		height: 100%;
+		display: block;
+		position: fixed;
+		top: 0;
+		left: 0;
+	}
 	</style>
 </head>
 <body>
 	<div id="camera-preview">
 		Please grant access to camera <br>
-		<video id="video" height="300" width="400" autoplay>Video is not supported by your browser</video>
+		<video id="video" autoplay>Video is not supported by your browser</video>
 		<div class="buttonHolder">
 		    <a href="#" class="button" id="pictureButton">Cheese!</a>
 		</div>
