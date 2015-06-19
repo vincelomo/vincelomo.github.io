@@ -44,10 +44,13 @@
 			var p = navigator.mediaDevices.getUserMedia({ 
 				audio: false, 
 				video: { 
-					sourceId: videoSrcId, 
+					/*sourceId: videoSrcId, 
 					frameRate: { ideal: 10, max: 15 },
 					width: 1280,
-					height: 720
+					height: 720*/
+					mandatory : {
+						facingMode : "environment"
+					}
 				} 
 			});
 
