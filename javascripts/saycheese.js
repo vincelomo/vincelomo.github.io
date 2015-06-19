@@ -104,6 +104,10 @@ var SayCheese = (function() {
         return this.trigger('start');
       }
     }.bind(this), false);
+
+    video.onloadedmetadata = function(e) {
+      video.play();
+    };
   };
 
   SayCheese.prototype.linkAudio = function linkAudio() {
