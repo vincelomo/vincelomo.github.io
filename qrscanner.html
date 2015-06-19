@@ -2,12 +2,18 @@
 <head>
 	<title>QR Code scanner</title>
 	<style type="text/css">
-		#camera-preview {
-			width: 100%;
-			height: 100%;
-			background: black;
-			color: white;
-		}
+	html,body {
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+	}
+	#camera-preview {
+		width: 100%;
+		height: 100%;
+		background: black;
+		color: white;
+	}
 	</style>
 </head>
 <body>
@@ -19,28 +25,6 @@
 		</div>
 		<canvas height="300" width="400"></canvas>
 	</div>
-	<script type="text/javascript">
-		alert('test');
-		navigator.getUserMedia = navigator.getUserMedia ||
-                         navigator.webkitGetUserMedia ||
-                         navigator.mozGetUserMedia;
-
-		if (navigator.getUserMedia) {
-		   navigator.getUserMedia({ audio: false, video: true },
-		      function(stream) {
-		         var video = document.querySelector('video');
-		         video.src = window.URL.createObjectURL(stream);
-		         video.onloadedmetadata = function(e) {
-		           video.play();
-		         };
-		      },
-		      function(err) {
-		         console.log("The following error occured: " + err.name);
-		      }
-		   );
-		} else {
-		   console.log("getUserMedia not supported");
-		}
-	</script>
+	<script type="text/javascript" src="/javascripts/adapter.js"></script>
 </body>
 </html>
