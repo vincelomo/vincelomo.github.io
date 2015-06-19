@@ -36,7 +36,7 @@
 		                " id = " + device.deviceId);
 		    if(device.kind == "videoinput"){
 		    	videoSrcId = device.deviceId;
-		    	break;
+		    	return;
 		    }
 		  });
 		})
