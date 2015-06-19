@@ -52,6 +52,7 @@
 			});
 
 			p.then(function(stream) {
+				console.log(stream);
 				var video = document.querySelector('video');
 				video.src = window.URL.createObjectURL(stream);
 				video.onloadedmetadata = function(e) {
