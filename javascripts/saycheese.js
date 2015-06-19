@@ -105,7 +105,7 @@ var SayCheese = (function() {
       }
     }.bind(this), false);
 
-    video.onloadedmetadata = function(e) {
+    this.video.onloadedmetadata = function(e) {
       video.play();
     };
   };
