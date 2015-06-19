@@ -26,5 +26,19 @@
 		<canvas height="300" width="400"></canvas>
 	</div>
 	<script type="text/javascript" src="/javascripts/adapter.js"></script>
+	<script type="text/javascript">
+	var p = navigator.mediaDevices.getUserMedia({ audio: true, video: { facingMode: "environment" } });
+
+	p.then(function(stream) {
+	   var video = document.querySelector('video');
+	   video.src = window.URL.createObjectURL(mediaStream);
+	   video.onloadedmetadata = function(e) {
+	      // Do something with the video here.
+	      video.play();
+	   };
+	};
+
+	p.catch(function(e) { console.log(e.name); }); // always check for errors at the end.
+	</script>
 </body>
 </html>
