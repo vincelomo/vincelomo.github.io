@@ -12,12 +12,34 @@
 </head>
 <body>
 	<div id="camera-preview">
-		Please grant access to camera 
+		Please grant access to camera <br>
+		<video id="video" height="300" width="400" autoplay>Video is not supported by your browser</video>
+		<div class="buttonHolder">
+		    <a href="#" class="button" id="pictureButton">Cheese!</a>
+		</div>
+		<canvas height="300" width="400"></canvas>
 	</div>
-	<script type="text/javascript" src="/javascripts/saycheese.js"></script>
 	<script type="text/javascript">
-		var sayCheese = new SayCheese('#camera-preview', { snapshots: false });
-		sayCheese.start();
+		navigator.getUserMedia = navigator.getUserMedia ||
+                         navigator.webkitGetUserMedia ||
+                         navigator.mozGetUserMedia;
+
+		if (navigator.getUserMedia) {
+		   navigator.getUserMedia({ audio: true, video: { width: 1280, height: 720 } },
+		      function(stream) {
+		         var video = document.querySelector('video');
+		         video.src = window.URL.createObjectURL(stream);
+		         video.onloadedmetadata = function(e) {
+		           video.play();
+		         };
+		      },
+		      function(err) {
+		         console.log("The following error occured: " + err.name);
+		      }
+		   );
+		} else {
+		   console.log("getUserMedia not supported");
+		}
 	</script>
 </body>
 </html>
