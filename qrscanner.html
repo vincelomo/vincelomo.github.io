@@ -85,6 +85,8 @@
 				if( lastScanData != data ){
 					lastScanData = data;
 					navigator.vibrate(500);
+					var video = document.querySelector('video');
+					video.pause();
 				}
 			};
 
