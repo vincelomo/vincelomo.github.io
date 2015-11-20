@@ -74,7 +74,7 @@
 	(function(){
 		var videoSrcId = "";
 		var videoSrcArr = [];
-		
+
 		navigator.mediaDevices.enumerateDevices()
 		.then(function(devices) {
 			qrcode.callback = function(data){
@@ -104,7 +104,8 @@
 					video: { 
 						sourceId: videoSrcId, 
 						frameRate: { ideal: 10, max: 15 },
-						width: { facingMode: { exact: "environment" } }
+						width: 1280,
+						height: 720
 					} 
 				});
 
@@ -141,14 +142,12 @@
 		  	start();
 
 	  		$('#pictureButton,video').click(function(){
-	  			alert('devices: '+ videoSrcArr);
-	  			alert('current camera: '+ videoSrcId);
 	  			if(videoSrcId == videoSrcArr[0]){
 	  				videoSrcId = videoSrcArr[1];
 	  			} else {
 	  				videoSrcId = videoSrcArr[0];
 	  			}
-	  			alert('new camera: '+ videoSrcId);
+
 	  			start();
 	  		});
 		})
