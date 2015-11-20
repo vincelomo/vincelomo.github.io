@@ -31,7 +31,7 @@
 </head>
 <body>
 	<div id="camera-preview">
-		Please grant access to camera <br>
+		<span id="instruction"> Please grant access to camera </span><br>
 		<video id="video" autoplay>Video is not supported by your browser</video>
 		<div class="buttonHolder">
 		    <a href="#" class="button" id="pictureButton">Cheese!</a>
@@ -76,6 +76,10 @@
 					$('#camera-preview video, #camera-preview canvas').height($(window).height());
 					$('#camera-preview video, #camera-preview canvas').width($(window).width());
 				};
+				var counter = 0;
+				video.addEventListener('timeupdate',function(e){
+					$('#instruction').html('timeupdate' +counter++);
+				});
 			});
 
 		p.catch(function(e) { alert(e.name); }); // always check for errors at the end.
