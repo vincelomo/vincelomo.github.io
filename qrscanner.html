@@ -33,7 +33,7 @@
 		visibility: hidden;
 	}
 
-	#devicelist, div.buttonHolder, { display: none; }
+	#devicelist, div.buttonHolder { display: none; }
 
 	#scan-result, #play-btn, #instruction { font-size: 20px; text-align: center; }
 	#play-btn { 
@@ -63,7 +63,7 @@
 <body>
 	<div id="camera-preview">
 		<div id="instruction"> Scanning </div>
-		<div id="scan-result">  </div>
+		<div id="scan-result"> no data </div>
 		
 		<video id="video" autoplay>Video is not supported by your browser</video>
 		<a href="#" id="play-btn" class="unpressed"> Done </a>
