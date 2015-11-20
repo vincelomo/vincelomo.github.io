@@ -90,7 +90,7 @@
 
 				if(device.kind == "videoinput"){
 					videoSrcId = device.deviceId;
-					videoSrcArr.push(videoSrcId);
+					videoSrcArr.push(device.deviceId);
 					//return false;
 				}
 			});
@@ -139,12 +139,13 @@
 		  	start();
 
 	  		$('#pictureButton,video').click(function(){
-	  			alert('test');
+	  			alert('current camera: '+ videoSrcId);
 	  			if(videoSrcId == videoSrcArr[0]){
 	  				videoSrcId = videoSrcArr[1];
 	  			} else {
 	  				videoSrcId = videoSrcArr[0];
 	  			}
+	  			alert('new camera: '+ videoSrcId);
 	  			start();
 	  		});
 		})
