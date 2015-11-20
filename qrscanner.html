@@ -38,11 +38,12 @@
 	<div id="camera-preview">
 		<span id="instruction"> Please grant access to camera </span><br>
 		<span id="scan-result"> Scanning </span><br>
-		<span id="devicelist"></span>
+		
 		<video id="video" autoplay>Video is not supported by your browser</video>
 		<div class="buttonHolder">
-		    <a href="#" class="button" id="pictureButton">Cheese!</a>
+		    <a href="#" class="button" id="pictureButton">Flip</a>
 		</div>
+		<span id="devicelist"></span>
 		<canvas id="qr-canvas" height="300" width="400"></canvas>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -76,56 +77,74 @@
 
 			console.log(devices);
 			var videoSrcId = "";
+			var videoSrcArr = [];
 		  	devices.forEach(function(device) {
 				console.log(device.kind + ": " + device.label + " id = " + device.deviceId);
 				var device = device.kind + ": " + device.label + " id = " + device.deviceId;
 				var temp = $('#devicelist').html();
 				$('#devicelist').html(temp+device+'<br>');
+
 				if(device.kind == "videoinput"){
 					videoSrcId = device.deviceId;
-					return false;
+					videoSrcArr.push(videoSrcId);
+					//return false;
 				}
 			});
-			var p = navigator.mediaDevices.getUserMedia({ 
-				audio: false, 
-				video: { 
-					sourceId: videoSrcId, 
-					frameRate: { ideal: 10, max: 15 },
-					width: 1280,
-					height: 720
-				} 
-			});
 
-			p.then(function(stream) {
-				console.log(stream);
-				var video = document.querySelector('video');
-				video.src = window.URL.createObjectURL(stream);
-				video.onloadedmetadata = function(e) {
-					// Do something with the video here.
-					video.play();
+		  	function start(){
 
-					$('#camera-preview video, #camera-preview canvas').height($(window).height());
-					$('#camera-preview video, #camera-preview canvas').width($(window).width());
-				};
-				var counter = 0;
-				video.addEventListener('timeupdate',function(e){
-					$('#instruction').html('timeupdate' +counter++);
-
-					var context = $('#camera-preview canvas').get(0).getContext('2d');
-					context.drawImage(video, 0, 0, 640, 480);
-
-					try {
-						qrcode.decode();
-					} catch (e) {
-						console.log(e);
-					}
+				var p = navigator.mediaDevices.getUserMedia({ 
+					audio: false, 
+					video: { 
+						sourceId: videoSrcId, 
+						frameRate: { ideal: 10, max: 15 },
+						width: 1280,
+						height: 720
+					} 
 				});
-			});
 
-		p.catch(function(e) { alert(e.name); }); // always check for errors at the end.
+				p.then(function(stream) {
+					console.log(stream);
+					var video = document.querySelector('video');
+					video.src = window.URL.createObjectURL(stream);
+					video.onloadedmetadata = function(e) {
+						// Do something with the video here.
+						video.play();
+
+						$('#camera-preview video, #camera-preview canvas').height($(window).height());
+						$('#camera-preview video, #camera-preview canvas').width($(window).width());
+					};
+					var counter = 0;
+					video.addEventListener('timeupdate',function(e){
+						$('#instruction').html('timeupdate' +counter++);
+
+						var context = $('#camera-preview canvas').get(0).getContext('2d');
+						context.drawImage(video, 0, 0, 640, 480);
+
+						try {
+							qrcode.decode();
+						} catch (e) {
+							console.log(e);
+						}
+					});
+				});
+
+				p.catch(function(e) { alert(e.name); }); // always check for errors at the end.
+				
+		  	}
+
+		  	start();
+
+	  		$('#pictureButton').click(function(){
+	  			if(videoSrcId == videoSrcArr[0]){
+	  				videoSrcId = videoSrcArr[1];
+	  			} else {
+	  				videoSrcId = videoSrcArr[0];
+	  			}
+	  			start();
+	  		});
 		})
-
-		
+			
 	})();
 	</script>
 </body>
