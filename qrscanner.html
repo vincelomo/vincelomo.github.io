@@ -33,9 +33,9 @@
 		visibility: hidden;
 	}
 
-	#devicelist, div.buttonHolder, #instruction { display: none; }
+	#devicelist, div.buttonHolder, { display: none; }
 
-	#scan-result, #play-btn { font-size: 20px; text-align: center; }
+	#scan-result, #play-btn, #instruction { font-size: 20px; text-align: center; }
 	#play-btn { 
 		background: #fefefe; 
 		color: black; f
@@ -62,8 +62,8 @@
 </head>
 <body>
 	<div id="camera-preview">
-		<span id="instruction"> Please grant access to camera </span><br>
-		<div id="scan-result"> Scanning </div>
+		<div id="instruction"> Scanning </div>
+		<div id="scan-result">  </div>
 		
 		<video id="video" autoplay>Video is not supported by your browser</video>
 		<a href="#" id="play-btn" class="unpressed"> Done </a>
@@ -103,6 +103,7 @@
 		navigator.mediaDevices.enumerateDevices()
 		.then(function(devices) {
 			qrcode.callback = function(data){
+				$('#instruction').html('Successfully scanned');
 				$('#scan-result').html(data);
 				//if( lastScanData != data ){
 					lastScanData = data;
@@ -173,6 +174,7 @@
 		  	start();
 
 		  	$('#play-btn').click(function(){
+		  		$('#instruction').html('Scanning');
 		  		var video = document.querySelector('video');
 				video.play();
 		  	}).on('touchstart mousedown',function(){
