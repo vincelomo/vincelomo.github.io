@@ -33,13 +33,15 @@
 		visibility: hidden;
 	}
 
-	#devicelist, div.buttonHolder, #scan-result, #instruction { display: none; }
+	#devicelist, div.buttonHolder, #instruction { display: none; }
+
+	#scan-result { font-size: 20px; text-align: center; }
 	</style>
 </head>
 <body>
 	<div id="camera-preview">
 		<span id="instruction"> Please grant access to camera </span><br>
-		<span id="scan-result"> Scanning </span><br>
+		<div id="scan-result"> Scanning </div>
 		
 		<video id="video" autoplay>Video is not supported by your browser</video>
 		
