@@ -44,6 +44,7 @@
 		padding: 20px; 
 		position: fixed; 
 		bottom: 0; 
+		display: none;
 	}
 
 	.unpressed {
@@ -110,6 +111,7 @@
 					navigator.vibrate(500);
 					var video = document.querySelector('video');
 					video.pause();
+					$('#play-btn').show();
 				//}
 			};
 
@@ -155,7 +157,7 @@
 					var counter = 0;
 					video.addEventListener('timeupdate',function(e){
 						//$('#instruction').html('timeupdate' +counter++);
-							
+
 						var context = $('#camera-preview canvas').get(0).getContext('2d');
 						context.drawImage(video, 0, 0, 640, 480);
 
@@ -177,6 +179,7 @@
 		  		$('#instruction').html('Scanning');
 		  		var video = document.querySelector('video');
 				video.play();
+				$(this).hide();
 		  	}).on('touchstart mousedown',function(){
 		  		$(this).removeClass('unpressed').addClass('pressed');
 		  	}).on('touchend mouseup',function(){
