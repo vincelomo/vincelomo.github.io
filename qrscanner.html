@@ -72,6 +72,8 @@
 
 	<script type="text/javascript">
 	(function(){
+		var videoSrcId = "";
+		var videoSrcArr = [];
 		
 		navigator.mediaDevices.enumerateDevices()
 		.then(function(devices) {
@@ -80,17 +82,17 @@
 			};
 
 			console.log(devices);
-			var videoSrcId = "";
-			var videoSrcArr = [];
+			
 		  	devices.forEach(function(device) {
 				console.log(device.kind + ": " + device.label + " id = " + device.deviceId);
-				var device = device.kind + ": " + device.label + " id = " + device.deviceId;
-				var temp = $('#devicelist').html();
-				$('#devicelist').html(temp+device+'<br>');
-
+				
 				if(device.kind == "videoinput"){
 					videoSrcId = device.deviceId;
 					videoSrcArr.push(device.deviceId);
+
+					var device = device.kind + ": " + device.label + " id = " + device.deviceId;
+					var temp = $('#devicelist').html();
+					$('#devicelist').html(temp+device+'<br>');
 					//return false;
 				}
 			});
