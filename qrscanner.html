@@ -79,6 +79,7 @@
 		.then(function(devices) {
 			qrcode.callback = function(data){
 				$('#scan-result').html(data);
+				navigator.vibrate(500);
 			};
 
 			console.log(devices);
@@ -93,7 +94,6 @@
 					var device = device.kind + ": " + device.label + " id = " + device.deviceId;
 					var temp = $('#devicelist').html();
 					$('#devicelist').html(temp+device+'<br>');
-					//return false;
 				}
 			});
 
@@ -120,6 +120,7 @@
 						$('#camera-preview video, #camera-preview canvas').height($(window).height());
 						$('#camera-preview video, #camera-preview canvas').width($(window).width());
 					};
+
 					var counter = 0;
 					video.addEventListener('timeupdate',function(e){
 						$('#instruction').html('timeupdate' +counter++);
