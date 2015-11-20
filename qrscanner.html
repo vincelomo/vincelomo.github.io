@@ -47,15 +47,15 @@
 	}
 
 	.unpressed {
-		-webkit-box-shadow: inset 8px 8px 0px 11px rgba(0,0,0,0.75);
-		-moz-box-shadow: inset 8px 8px 0px 11px rgba(0,0,0,0.75);
-		box-shadow: inset 8px 8px 0px 11px rgba(0,0,0,0.75);
+		-webkit-box-shadow: inset 3px 3px 0px 11px rgba(0,0,0,0.75);
+		-moz-box-shadow: inset 3px 3px 0px 11px rgba(0,0,0,0.75);
+		box-shadow: inset 3px 3px 0px 11px rgba(0,0,0,0.75);
 	}
 
 	.pressed {
-		-webkit-box-shadow: inset -8px -8px 0px 11px rgba(0,0,0,0.75);
-		-moz-box-shadow: inset -8px -8px 0px 11px rgba(0,0,0,0.75);
-		box-shadow: inset -8px -8px 0px 11px rgba(0,0,0,0.75);
+		-webkit-box-shadow: inset -3px -3px 0px 11px rgba(0,0,0,0.75);
+		-moz-box-shadow: inset -3px -3px 0px 11px rgba(0,0,0,0.75);
+		box-shadow: inset -3px -3px 0px 11px rgba(0,0,0,0.75);
 	}
 
 	</style>
@@ -175,9 +175,9 @@
 		  	$('#play-btn').click(function(){
 		  		var video = document.querySelector('video');
 				video.play();
-		  	}).mousedown(function(){
+		  	}).on('touchstart mousedown',function(){
 		  		$(this).removeClass('unpressed').addClass('pressed');
-		  	}).mouseup(function(){
+		  	}).on('touchend mouseup',function(){
 		  		$(this).removeClass('pressed').addClass('unpressed');
 		  	});
 		  	/*
