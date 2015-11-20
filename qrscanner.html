@@ -74,12 +74,16 @@
 	(function(){
 		var videoSrcId = "";
 		var videoSrcArr = [];
+		var lastScanData;
 
 		navigator.mediaDevices.enumerateDevices()
 		.then(function(devices) {
 			qrcode.callback = function(data){
 				$('#scan-result').html(data);
-				navigator.vibrate(500);
+				if( lastScanData != data ){
+					lastScanData = data;
+					navigator.vibrate(500);
+				}
 			};
 
 			console.log(devices);
