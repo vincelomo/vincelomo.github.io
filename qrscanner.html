@@ -154,7 +154,7 @@
 
 					var counter = 0;
 					video.addEventListener('timeupdate',function(e){
-						$('#instruction').html('timeupdate' +counter++);
+						//$('#instruction').html('timeupdate' +counter++);
 
 						var context = $('#camera-preview canvas').get(0).getContext('2d');
 						context.drawImage(video, 0, 0, 640, 480);
