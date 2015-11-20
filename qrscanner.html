@@ -104,12 +104,12 @@
 		.then(function(devices) {
 			qrcode.callback = function(data){
 				$('#scan-result').html(data);
-				if( lastScanData != data ){
+				//if( lastScanData != data ){
 					lastScanData = data;
 					navigator.vibrate(500);
 					var video = document.querySelector('video');
 					video.pause();
-				}
+				//}
 			};
 
 			console.log(devices);
