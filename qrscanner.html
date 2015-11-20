@@ -27,16 +27,22 @@
 		top: 0;
 		left: 0;
 	}
+
+	#qr-canvas {
+		opacity: 0;
+		visibility: hidden;
+	}
 	</style>
 </head>
 <body>
 	<div id="camera-preview">
 		<span id="instruction"> Please grant access to camera </span><br>
+		<span id="scan-result"> Scanning </span><br>
 		<video id="video" autoplay>Video is not supported by your browser</video>
 		<div class="buttonHolder">
 		    <a href="#" class="button" id="pictureButton">Cheese!</a>
 		</div>
-		<canvas height="300" width="400"></canvas>
+		<canvas id="qr-canvas" height="300" width="400"></canvas>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script type="text/javascript" src="/assets/js/qrcode/grid.js"></script>
@@ -63,6 +69,10 @@
 		
 		navigator.mediaDevices.enumerateDevices()
 		.then(function(devices) {
+			qrcode.callback = function(data){
+				$('#scan-result').html(data);
+			};
+
 			console.log(devices);
 			var videoSrcId = "";
 		  	devices.forEach(function(device) {
