@@ -38,6 +38,7 @@
 		</div>
 		<canvas height="300" width="400"></canvas>
 	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script type="text/javascript" src="/javascripts/adapter.js"></script>
 	<script type="text/javascript">
 	(function(){
@@ -71,6 +72,9 @@
 				video.onloadedmetadata = function(e) {
 					// Do something with the video here.
 					video.play();
+
+					$('#camera-preview video, #camera-preview canvas').height($(window).height());
+					$('#camera-preview video, #camera-preview canvas').width($(window).width());
 				};
 			});
 
