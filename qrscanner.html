@@ -38,6 +38,7 @@
 	<div id="camera-preview">
 		<span id="instruction"> Please grant access to camera </span><br>
 		<span id="scan-result"> Scanning </span><br>
+		<span id="devicelist"></span>
 		<video id="video" autoplay>Video is not supported by your browser</video>
 		<div class="buttonHolder">
 		    <a href="#" class="button" id="pictureButton">Cheese!</a>
@@ -76,8 +77,10 @@
 			console.log(devices);
 			var videoSrcId = "";
 		  	devices.forEach(function(device) {
-				console.log(device.kind + ": " + device.label +
-				            " id = " + device.deviceId);
+				console.log(device.kind + ": " + device.label + " id = " + device.deviceId);
+				var device = device.kind + ": " + device.label + " id = " + device.deviceId;
+				var temp = $('#devicelist').html();
+				$('#devicelist').html(temp+device+'<br>');
 				if(device.kind == "videoinput"){
 					videoSrcId = device.deviceId;
 					return false;
