@@ -39,7 +39,25 @@
 		<canvas height="300" width="400"></canvas>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script type="text/javascript" src="/assets/js/qrcode/grid.js"></script>
+	<script type="text/javascript" src="/assets/js/qrcode/version.js"></script>
+	<script type="text/javascript" src="/assets/js/qrcode/detector.js"></script>
+	<script type="text/javascript" src="/assets/js/qrcode/formatinf.js"></script>
+	<script type="text/javascript" src="/assets/js/qrcode/errorlevel.js"></script>
+	<script type="text/javascript" src="/assets/js/qrcode/bitmat.js"></script>
+	<script type="text/javascript" src="/assets/js/qrcode/datablock.js"></script>
+	<script type="text/javascript" src="/assets/js/qrcode/bmparser.js"></script>
+	<script type="text/javascript" src="/assets/js/qrcode/datamask.js"></script>
+	<script type="text/javascript" src="/assets/js/qrcode/rsdecoder.js"></script>
+	<script type="text/javascript" src="/assets/js/qrcode/gf256poly.js"></script>
+	<script type="text/javascript" src="/assets/js/qrcode/gf256.js"></script>
+	<script type="text/javascript" src="/assets/js/qrcode/decoder.js"></script>
+	<script type="text/javascript" src="/assets/js/qrcode/qrcode.js"></script>
+	<script type="text/javascript" src="/assets/js/qrcode/findpat.js"></script>
+	<script type="text/javascript" src="/assets/js/qrcode/alignpat.js"></script>
+	<script type="text/javascript" src="/assets/js/qrcode/databr.js"></script>
 	<script type="text/javascript" src="/javascripts/adapter.js"></script>
+
 	<script type="text/javascript">
 	(function(){
 		
@@ -79,6 +97,15 @@
 				var counter = 0;
 				video.addEventListener('timeupdate',function(e){
 					$('#instruction').html('timeupdate' +counter++);
+
+					var context = $('#camera-preview canvas').get(0).getContext('2d');
+					context.drawImage(video, 0, 0, 640, 480);
+
+					try {
+						qrcode.decode();
+					} catch (e) {
+						console.log(e);
+					}
 				});
 			});
 
