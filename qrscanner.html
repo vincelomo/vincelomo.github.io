@@ -36,7 +36,28 @@
 	#devicelist, div.buttonHolder, #instruction { display: none; }
 
 	#scan-result, #play-btn { font-size: 20px; text-align: center; }
-	#play-btn { background: #fefefe; color: black; font-family: sans-serif; padding: 20px; position: fixed; bottom: 0; }
+	#play-btn { 
+		background: #fefefe; 
+		color: black; f
+		font-family: 
+		sans-serif; 
+		padding: 20px; 
+		position: fixed; 
+		bottom: 0; 
+	}
+
+	.unpressed {
+		-webkit-box-shadow: inset 8px 8px 0px 11px rgba(0,0,0,0.75);
+		-moz-box-shadow: inset 8px 8px 0px 11px rgba(0,0,0,0.75);
+		box-shadow: inset 8px 8px 0px 11px rgba(0,0,0,0.75);
+	}
+
+	.pressed {
+		-webkit-box-shadow: inset -8px -8px 0px 11px rgba(0,0,0,0.75);
+		-moz-box-shadow: inset -8px -8px 0px 11px rgba(0,0,0,0.75);
+		box-shadow: inset -8px -8px 0px 11px rgba(0,0,0,0.75);
+	}
+
 	</style>
 </head>
 <body>
@@ -45,7 +66,7 @@
 		<div id="scan-result"> Scanning </div>
 		
 		<video id="video" autoplay>Video is not supported by your browser</video>
-		<div id="play-btn"> Done </div>
+		<div id="play-btn" class="unpressed"> Done </div>
 		<div class="buttonHolder">
 		    <a href="#" class="button" id="pictureButton">Flip</a>
 		</div>
@@ -154,6 +175,10 @@
 		  	$('#play-btn').click(function(){
 		  		var video = document.querySelector('video');
 				video.play();
+		  	}).mousedown(function(){
+		  		$(this).removeClass('unpressed').addClass('pressed');
+		  	}).mouseup(function(){
+		  		$(this).removeClass('pressed').addClass('unpressed');
 		  	});
 		  	/*
 	  		$('#pictureButton,video').click(function(){
