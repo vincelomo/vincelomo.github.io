@@ -64,7 +64,7 @@
 <body>
 	<div id="camera-preview">
 		<div id="instruction"> Scanning </div>
-		<div id="scan-result"> no data </div>
+		<div id="scan-result"></div>
 		
 		<video id="video" autoplay>Video is not supported by your browser</video>
 		<a href="#" id="play-btn" class="unpressed"> Done </a>
@@ -177,6 +177,7 @@
 
 		  	$('#play-btn').click(function(){
 		  		$('#instruction').html('Scanning');
+		  		$('#scan-result').html('');
 		  		var video = document.querySelector('video');
 				video.play();
 				$(this).hide();
