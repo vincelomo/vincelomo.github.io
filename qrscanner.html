@@ -139,6 +139,7 @@
 		  	start();
 
 	  		$('#pictureButton,video').click(function(){
+	  			alert('devices: '+ videoSrcArr);
 	  			alert('current camera: '+ videoSrcId);
 	  			if(videoSrcId == videoSrcArr[0]){
 	  				videoSrcId = videoSrcArr[1];
