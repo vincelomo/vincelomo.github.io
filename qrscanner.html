@@ -33,9 +33,7 @@
 		visibility: hidden;
 	}
 
-	#pictureButton {
-		position: fixed;
-	}
+	#devicelist, div.buttonHolder { display: none; }
 	</style>
 </head>
 <body>
@@ -44,9 +42,11 @@
 		<span id="scan-result"> Scanning </span><br>
 		
 		<video id="video" autoplay>Video is not supported by your browser</video>
+		
 		<div class="buttonHolder">
 		    <a href="#" class="button" id="pictureButton">Flip</a>
 		</div>
+		
 		<span id="devicelist"></span>
 		<canvas id="qr-canvas" height="300" width="400"></canvas>
 	</div>
@@ -145,7 +145,7 @@
 		  	}
 
 		  	start();
-
+		  	/*
 	  		$('#pictureButton,video').click(function(){
 	  			if(videoSrcId == videoSrcArr[0]){
 	  				videoSrcId = videoSrcArr[1];
@@ -154,7 +154,7 @@
 	  			}
 
 	  			start();
-	  		});
+	  		});*/
 		})
 			
 	})();
